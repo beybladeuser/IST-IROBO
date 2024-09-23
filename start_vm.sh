@@ -18,6 +18,7 @@ sudo apt-get install ros-noetic-turtlebot3
 sudo apt-get install ros-noetic-robot-localization
 sudo apt-get install ros-noetic-dynamixel-sdk
 sudo apt-get install ros-noetic-teleop-twist-keyboard
+sudo apt-get install ros-noetic-gmapping
 
 cd $(pwd)/catkin_ws
 catkin_make
