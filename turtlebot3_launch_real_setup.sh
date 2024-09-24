@@ -9,4 +9,4 @@ export TURTLEBOT3_IP=192.168.28.$TURTLEBOT3_NUMBER
 export ROS_MASTER_URI=http://192.168.28.$TURTLEBOT3_NUMBER:11311
 #export ROS_HOSTNAME=192.168.[27/28].XXX #[lab computer / laptop IP] make ifconfig and check wlan (just because you are using wifi in the lab)
 export ROS_HOSTNAME=192.168.28.124
-export ROS_IP=192.168.28.124 #[lab computer / laptop IP] make ifconfig and check wlan (just because you are using wifi in the lab)
+export ROS_IP=$ROS_HOSTNAME #[lab computer / laptop IP] make ifconfig and check wlan (just because you are using wifi in the lab)
