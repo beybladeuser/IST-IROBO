@@ -19,6 +19,7 @@ sudo apt-get install ros-noetic-robot-localization
 sudo apt-get install ros-noetic-dynamixel-sdk
 sudo apt-get install ros-noetic-teleop-twist-keyboard
 sudo apt-get install ros-noetic-gmapping
+sudo apt-get install ros-noetic-navigation
 
 cd $(pwd)/catkin_ws
 catkin_make
