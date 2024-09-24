@@ -2,5 +2,5 @@
 	path = catkin_ws/src/turtlebot3_datasets
 	url = https://github.com/irob-labs-ist/turtlebot3_datasets.git
 [submodule "turtlebot3_simulations"]
-	path = turtlebot3_simulations
+	path = catkin_ws/src/turtlebot3_simulations
 	url = https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
