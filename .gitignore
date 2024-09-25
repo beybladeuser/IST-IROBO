@@ -1,3 +1,5 @@
 *.iso
 vm/*
 !vm/.gitkeep
+catkin_ws/*
+!catkin_ws/src
