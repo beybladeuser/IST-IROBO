@@ -12,6 +12,7 @@ sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator 
 sudo apt install python3-rosdep -y
 sudo rosdep init
 rosdep update
+
 sudo apt-get install ros-noetic-turtlebot3-msgs -y
 #sudo apt-get install ros-noetic-turtlebot3-gazebo -y
 sudo apt-get install ros-noetic-turtlebot3 -y
@@ -21,6 +22,10 @@ sudo apt-get install ros-noetic-teleop-twist-keyboard -y
 sudo apt-get install ros-noetic-gmapping -y
 sudo apt-get install ros-noetic-navigation -y
 
+sudo apt-get install python3-pip -y
+sudo pip install -upgrade pip
+sudo pip install gdown
+
 git submodule init
 git submodule update
 
@@ -28,3 +33,6 @@ source ~/.bashrc
 
 cd $(pwd)/catkin_ws
 catkin_make
+
+source $(pwd)/catkin_ws/devel/setup.bash
+roscd turtlebot3_datasets/scripts && bash download_dataset.sh
