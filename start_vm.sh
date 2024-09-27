@@ -23,5 +23,8 @@ sudo apt-get install ros-noetic-navigation -y
 
 git submodule init
 git submodule update
+
+source ~/.bashrc
+
 cd $(pwd)/catkin_ws
 catkin_make
