@@ -4,7 +4,7 @@
   <arg name="bag_name" default="fixed_slam_easy"/>
   <arg name="bag_file" default="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag"/>
   <arg name="map_file" default="$(find turtlebot3_datasets)/data/map.yaml"/>
-  <arg name="rviz_config_file" default="$(find miniproj1_datasets)/rviz/turtlebot3_visualize_localization_sim.rviz"/>
+  <arg name="rviz_config_file" default="$(find miniproj1_datasets)/src/rviz/turtlebot3_visualize_localization_sim.rviz"/>
 
   
   <!-- Turtlebot3 -->
