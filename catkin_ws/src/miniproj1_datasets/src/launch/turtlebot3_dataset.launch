@@ -80,22 +80,20 @@
     <param name="odom_alpha4" value="0.2"/>
     <param name="laser_min_range" value="0.1"/>
     <param name="laser_max_range" value="3.5"/>
-    <remap from="scan" to="/tb3_0/scan"/>
   </node>
 
   <!-- Groundtruth path -->
-  <node pkg="tf2_ros" type="static_transform_publisher" name="tf_groundtruth" args="0 0 0 0 0 0 mocap base_link"/>
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="tf_groundtruth" args="0 0 0 0 0 0 mocap base_link"/> -->
 
   <!-- Estimated path -->
-  <node pkg="robot_localization" type="navsat_transform_node" name="estimated_path" output="screen">
+  <!-- <node pkg="robot_localization" type="navsat_transform_node" name="estimated_path" output="screen">
     <param name="use_sim_time" value="true"/>
     <param name="odom_frame_id" value="odom"/>
     <param name="base_link_frame_id" value="base_link"/>
-  </node>
+  </node> -->
 
   <!-- Position error publisher -->
-  <node pkg="position_error_pub" type="position_error_node.py" name="position_error_publisher" output="screen"/>
-
+  <!-- <node pkg="position_error_pub" type="position_error_node.py" name="position_error_publisher" output="screen"/> -->
   <!-- rviz -->
   <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(arg rviz_config_file)"/>
 
