@@ -31,8 +31,11 @@ git submodule update
 
 source ~/.bashrc
 
-cd $(pwd)/catkin_ws
+workdir=$(pwd)
+
+cd $(echo $workdir)/catkin_ws
 catkin_make
+cd $(echo $workdir)
 
 source $(pwd)/catkin_ws/devel/setup.bash
 roscd turtlebot3_datasets/scripts && bash download_dataset.sh
