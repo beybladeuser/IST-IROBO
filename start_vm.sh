@@ -1,3 +1,5 @@
+workdir=$(pwd)
+
 sudo apt update
 sudo apt upgrade -y
 sudo apt install build-essential curl git wget -y
@@ -25,13 +27,13 @@ sudo apt-get install ros-noetic-navigation -y
 sudo apt-get install python3-pip -y
 sudo pip install -upgrade pip
 sudo pip install gdown
+sudo pip install -r $(echo $workdir)/requirements.txt
 
 git submodule init
 git submodule update
 
 source ~/.bashrc
 
-workdir=$(pwd)
 
 cd $(echo $workdir)/catkin_ws
 catkin_make
