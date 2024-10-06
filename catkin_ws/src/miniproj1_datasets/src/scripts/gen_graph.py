@@ -25,7 +25,7 @@ with open(os.path.expanduser(filename), "r") as f:
 
 graph_values = np.array(graph_values)
 
-plt.plot(graph_values[:, 0], graph_values[:, 1], marker='o')
+plt.plot(graph_values[:, 0], graph_values[:, 1], marker='')
 plt.title('Simple Line Graph')
 plt.xlabel('Simulation Time')
 plt.ylabel('Error')
