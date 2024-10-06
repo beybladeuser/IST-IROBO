@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 filename = "~/.ros/log/latest/error_calc-8-stdout.log"
-filename = "temp.txt"
+#filename = "temp.txt"
 token_to_rm_regex = "[\[\],:\(\)]"
 graph_values = []
 start_time = None
