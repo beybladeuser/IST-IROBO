@@ -5,6 +5,7 @@
   <arg name="bag_file" default="$(find miniproj1_datasets)/src/bags/test_record_very_cool.bag"/>
   <arg name="map_file" default="$(find miniproj1_datasets)/src/maps/very_cool_map_by_very_cool_people.yaml"/>
   <arg name="rviz_config_file" default="$(find miniproj1_datasets)/src/rviz/turtlebot3_visualize_localization_sim.rviz"/>
+  <arg name="playback_speed" default="5.0"/>
 
   
   <!-- Turtlebot3 -->
@@ -25,7 +26,7 @@
   <!-- ROSBAG -->
   <param name="use_sim_time" value="true"/>
   <node pkg="rosbag" type="play" name="rosbag_player" 
-          args="-r 3.0 --clock $(arg bag_file)"/>
+          args="-r $(arg playback_speed) --clock $(arg bag_file)"/>
 
   <!-- EKF robot localisation -->
   <node pkg="robot_localization" type="ekf_localization_node" name="robot_localization_ekf_node_odom" clear_params="true">
