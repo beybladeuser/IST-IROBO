@@ -45,7 +45,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--gt_frame', help='The child frame of the GT transform', default='mocap_laser_link')
 parser.add_argument('--est_frame', help='The child frame of the estimation transform', default='base_scan')
 
-args = parser.parse_args()
+args, unknown = parser.parse_known_args()
 
 gt_frame = args.gt_frame
 est_frame = args.est_frame
