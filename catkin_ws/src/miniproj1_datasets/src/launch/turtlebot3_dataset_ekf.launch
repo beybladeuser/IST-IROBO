@@ -23,7 +23,7 @@
 
   
   <!-- ROSBAG -->
-  <param name="/use_sim_time" value="true"/>
+  <param name="use_sim_time" value="true"/>
   <node pkg="rosbag" type="play" name="rosbag_player" 
           args="--clock $(arg bag_file)"/>
 
@@ -75,8 +75,8 @@
 
   <!-- Position error publisher -->
   <!-- <node pkg="position_error_pub" type="position_error_node.py" name="position_error_publisher" output="screen"/> -->
-  <node pkg="miniproj1_datasets" type="calculate_error.py" name="error_calc" output="screen"/>
-
+  <!-- <node pkg="miniproj1_datasets" type="calculate_error.py" name="error_calc" output="screen"/>
+ -->
   <!-- rviz -->
   <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(arg rviz_config_file)"/>
 
