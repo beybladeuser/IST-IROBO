@@ -30,7 +30,7 @@ def main():
 		else:
 			print("Unsupported file type")
 
-	plt.plot(graph_values["sim_time"], graph_values["error"], marker='')
+	plt.plot(np.array(graph_values["sim_time"]), np.array(graph_values["error"]), marker='')
 	plt.title(args.tittle)
 	plt.xlabel('Simulation Time')
 	plt.ylabel('Error')
