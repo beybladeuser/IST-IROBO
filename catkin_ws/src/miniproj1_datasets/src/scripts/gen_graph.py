@@ -2,6 +2,7 @@ import re
 import os
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import argparse
 
 TOKEN_TO_RM_REGEX = "[\[\],:\(\)]"
@@ -14,12 +15,12 @@ def main():
 	args = parser.parse_args()
 
 	filename = os.path.expanduser(args.filename)
-	output:str = ".".join(filename.split(".")[:-1]) if ".csv" in filename else os.path.expanduser(args.output)
+	output:str = ".".join(np.array(filename.split("."))[:-1]) if ".csv" in filename else os.path.expanduser(args.output)
 	output = "./" + output if len(output.split("/")) == 1 else output
 
-	output_dir = "/".join(output.split("/")[:-1])
+	output_dir = "/".join(np.array(output.split("/"))[:-1])
 	output_filename = output.split("/")[-1]
-	index = len(check_similar_filename(output_dir, output_filename))
+	index = len(check_similar_filename(output_dir, output_filename)) + (1 if ".csv" in filename else 0)
 
 	with open(filename, "r") as f:
 		if ".log" in filename:
@@ -51,11 +52,11 @@ def check_similar_filename(directory, pattern):
 		return result
 
 	# Compile the regex pattern
-	regex = re.compile(pattern)
+	regex = re.compile(pattern + "_[0-9]+\.png$")
 
 	# Check if any filename matches the pattern
 	for filename in files:
-		if regex.match(filename) and ".csv" not in filename:
+		if regex.match(filename):
 			result.append(filename)
 
 	return result
