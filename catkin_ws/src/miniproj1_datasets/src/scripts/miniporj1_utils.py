@@ -15,7 +15,7 @@ def split_path_from_filename(filename:str):
 	return path, filename
 
 def infer_current_dir(filename:str):
-	return "./" + filename if not re.match(r'^[/a-zA-Z0-9]', filename) else filename
+	return "./" + filename if not re.match(r'^[/a-zA-Z0-9~]', filename) else filename
 
 def check_similar_filename(directory, pattern):
 	# List all files in the specified directory
