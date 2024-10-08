@@ -43,11 +43,12 @@ if __name__ == '__main__':
     rospy.init_node('frame_path_publisher')
     frame_id = rospy.get_param('~frame_id', 'base_scan')  # The frame you want to track
     ref_frame = rospy.get_param('~ref_frame', 'map')  # The reference frame to track against
+    rate_num = rospy.get_param('~rate', 10)  # The reference frame to track against
     topic_name = rospy.get_param('~topic_name', '/frame_path')  # The reference frame to track against
 
     frame_path_publisher = FramePathPublisher(frame_id, ref_frame, topic_name)
     
-    rate = rospy.Rate(10)  # Adjust the rate as necessary
+    rate = rospy.Rate(rate_num)  # Adjust the rate as necessary
     while not rospy.is_shutdown():
         frame_path_publisher.publish_path()
         rate.sleep()
