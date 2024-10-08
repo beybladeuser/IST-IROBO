@@ -3,10 +3,11 @@
 import rospy
 import tf
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import PoseStamped
+from rosgraph_msgs.msg import Clock
 from miniproj1_utils import expand_filename, split_extension_from_filename, get_dup_file_index, create_file
 import os
 import pandas as pd
+import sys
 
 class CovarianceLogger:
 	def __init__(self, output, topic_name = '/frame_path'):
@@ -33,6 +34,13 @@ if __name__ == '__main__':
 	output_index = get_dup_file_index(output_filename)
 	output_filename = f"${output_filename}_${output_index}.csv"
 	create_file(output_filename)
+
+	if rospy.rostime.is_wallclock():
+		rospy.logfatal('You should be using simulated time: rosparam set use_sim_time true')
+		sys.exit(1)
+	
+	rospy.loginfo('Waiting for clock')
+	rospy.sleep(0.00001)
 
 	covariance_logger = CovarianceLogger(output_filename, topic_name)
 
