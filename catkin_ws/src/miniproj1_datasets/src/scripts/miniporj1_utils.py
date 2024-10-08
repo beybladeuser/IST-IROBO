@@ -15,7 +15,7 @@ def split_path_from_filename(filename:str):
 	return path, filename
 
 def infer_current_dir(filename:str):
-	return "./" + filename if not re.match(r'^[/a-zA-Z0-9~]', filename) else filename
+	return "./" + filename if re.match(r'^[a-zA-Z0-9].*', filename) != None else filename
 
 def check_similar_filename(directory, pattern):
 	# List all files in the specified directory
@@ -41,3 +41,6 @@ def get_dup_file_index(filename, has_extension=True, index_mod=0):
 		filename = split_extension_from_filename(filename)[0]
 	path, filename = split_path_from_filename(filename)
 	return len(check_similar_filename(path, filename)) + index_mod
+
+def expand_filename(filename):
+	return infer_current_dir(os.path.expanduser(filename))
