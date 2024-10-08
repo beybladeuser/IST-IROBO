@@ -49,6 +49,9 @@ if __name__ == '__main__':
     frame_path_publisher = FramePathPublisher(frame_id, ref_frame, topic_name)
     
     rate = rospy.Rate(rate_num)  # Adjust the rate as necessary
-    while not rospy.is_shutdown():
-        frame_path_publisher.publish_path()
-        rate.sleep()
+    try:
+        while not rospy.is_shutdown():
+            frame_path_publisher.publish_path()
+            rate.sleep()
+    except rospy.exceptions.ROSInterruptException:
+        pass
