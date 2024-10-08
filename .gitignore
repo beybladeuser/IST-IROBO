@@ -6,3 +6,4 @@ catkin_ws/*
 catkin_ws/src/CMakeLists.txt
 *.crdownload
 .venv
+__pycache__

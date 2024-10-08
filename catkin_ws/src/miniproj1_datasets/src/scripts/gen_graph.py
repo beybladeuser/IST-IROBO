@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import argparse
+import miniporj1_utils as utils
 
 TOKEN_TO_RM_REGEX = "[\[\],:\(\)]"
 def main():
@@ -15,12 +16,10 @@ def main():
 	args = parser.parse_args()
 
 	filename = os.path.expanduser(args.filename)
-	output:str = ".".join(np.array(filename.split("."))[:-1]) if ".csv" in filename else os.path.expanduser(args.output)
-	output = "./" + output if len(output.split("/")) == 1 else output
+	filename_extensionless, filename_extension = utils.split_extension_from_filename(filename)
+	output:str = utils.infer_current_dir(filename_extensionless if "csv" == filename_extension else os.path.expanduser(args.output))
 
-	output_dir = "/".join(np.array(output.split("/"))[:-1])
-	output_filename = output.split("/")[-1]
-	index = len(check_similar_filename(output_dir, output_filename)) + (1 if ".csv" in filename else 0)
+	index = utils.get_dup_file_index(output, has_extension=False, index_mod = 1 if "csv" == filename_extension else 0)
 
 	with open(filename, "r") as f:
 		if ".log" in filename:
@@ -41,25 +40,6 @@ def main():
 	plt.savefig(output + f"_{index}.png")
 
 	plt.show()
-
-def check_similar_filename(directory, pattern):
-	# List all files in the specified directory
-	result = []
-	try:
-		files = os.listdir(directory)
-	except FileNotFoundError:
-		print(f"The directory '{directory}' does not exist.")
-		return result
-
-	# Compile the regex pattern
-	regex = re.compile(pattern + "_[0-9]+\.png$")
-
-	# Check if any filename matches the pattern
-	for filename in files:
-		if regex.match(filename):
-			result.append(filename)
-
-	return result
 
 def parse_csv(file) -> pd.DataFrame:
 	return pd.read_csv(file, index_col="id")
