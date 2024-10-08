@@ -4,7 +4,7 @@ import rospy
 import tf
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped
-import miniproj1_utils as utils
+from miniproj1_utils import expand_filename, split_extension_from_filename, get_dup_file_index, create_file
 import os
 import pandas as pd
 
@@ -28,11 +28,11 @@ if __name__ == '__main__':
 	topic_name = rospy.get_param('~topic_name', '/odometry/filtered')  # The reference frame to track against
 	rate_num = rospy.get_param('~rate', 10)  # The reference frame to track against
 	output_filename = rospy.get_param('~output', './covariance')  # The reference frame to track against
-	output_filename = utils.expand_filename(output_filename)
-	output_filename = utils.split_extension_from_filename(output_filename)[0]
-	output_index = utils.get_dup_file_index(output_filename)
+	output_filename = expand_filename(output_filename)
+	output_filename = split_extension_from_filename(output_filename)[0]
+	output_index = get_dup_file_index(output_filename)
 	output_filename = f"${output_filename}_${output_index}.csv"
-	utils.create_file(output_filename)
+	create_file(output_filename)
 
 	covariance_logger = CovarianceLogger(output_filename, topic_name)
 
