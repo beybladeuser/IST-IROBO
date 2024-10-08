@@ -10,7 +10,7 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-f', '--filename', help='The filename of the log file to make a graph', default='~/.ros/log/latest/error_calc-8-stdout.log')
 	parser.add_argument('-o', '--output', help='The ouput name, ignored if filename is a csv', default='./datasets_error')
-	parser.add_argument('-t', '--tittle', help='The of tittle the graph', default='Error for dataset with __placeholder__')
+	parser.add_argument('-t', '--title', help='The of title the graph', default='Error for dataset with __placeholder__')
 
 	args = parser.parse_args()
 
@@ -31,7 +31,7 @@ def main():
 			print("Unsupported file type")
 
 	plt.plot(np.array(graph_values["sim_time"]), np.array(graph_values["error"]), marker='')
-	plt.title(args.tittle)
+	plt.title(args.title)
 	plt.xlabel('Simulation Time')
 	plt.ylabel('Error')
 	plt.grid()
