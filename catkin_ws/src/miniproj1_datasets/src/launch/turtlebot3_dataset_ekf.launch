@@ -86,6 +86,11 @@
   <!-- Position error publisher -->
   <!-- <node pkg="position_error_pub" type="position_error_node.py" name="position_error_publisher" output="screen"/> -->
   <node pkg="miniproj1_datasets" type="calculate_error.py" name="error_calc" output="log"/>
+  
+  <node pkg="miniproj1_datasets" type="covariance_logger.py" name="covariance_logger" output="screen">
+    <param name="topic_name" value="/odometry/filtered" />
+    <param name="output" value="./miniproj1/error/dataset_covariance_ekf" />
+  </node>
 
   <!-- rviz -->
   <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(arg rviz_config_file)"/>
