@@ -162,7 +162,7 @@ include_directories(
 catkin_install_python(PROGRAMS
   src/scripts/calculate_error.py
   src/scripts/pub_path.py
-  src/scripts/log_covariance.py
+  src/scripts/covariance_logger.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
