@@ -2,7 +2,7 @@ import rospy
 import tf
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped
-import miniporj1_utils as utils
+import miniproj1_utils as utils
 import os
 import pandas as pd
 
