@@ -40,6 +40,7 @@ def main():
 	plt.grid()
 	
 	if "csv" != filename_extension:
+		utils.create_file(filename)
 		print("Saving data as csv into " + output + f"_{index}.csv")
 		graph_values.to_csv(output + f"_{index}.csv")
 

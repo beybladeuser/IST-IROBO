@@ -6,6 +6,9 @@ def split_extension_from_filename(filename:str):
 	filename_components = np.array(filename.split("."))
 	filename = ".".join(filename_components[:-1])
 	extension = filename_components[-1]
+	if "/" in extension:
+		filename = ".".join(filename, extension)
+		extension = None
 	return filename, extension
 
 def split_path_from_filename(filename:str):
@@ -44,3 +47,12 @@ def get_dup_file_index(filename, has_extension=True, index_mod=0):
 
 def expand_filename(filename):
 	return infer_current_dir(os.path.expanduser(filename))
+
+def create_file(filename):
+	filename = expand_filename(filename)
+	path, filename = split_path_from_filename(filename)
+	dirs = np.array(path.split("/"))
+	for i in range(1,len(dirs)):
+		current_path = "/".join(dirs[:i+1])
+		if not os.path.exists(current_path):
+			os.mkdir(current_path)
