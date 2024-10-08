@@ -77,6 +77,9 @@
     <param name="odom_frame_id" value="odom"/>
     <param name="base_link_frame_id" value="base_link"/>
   </node> -->
+  <node pkg="miniproj1_datasets" type="pub_path.py" name="pub_path_est" output="screen">
+    <param name="frame_id" value="base_scan" />
+  </node>
 
   <!-- Position error publisher -->
   <!-- <node pkg="position_error_pub" type="position_error_node.py" name="position_error_publisher" output="screen"/> -->
