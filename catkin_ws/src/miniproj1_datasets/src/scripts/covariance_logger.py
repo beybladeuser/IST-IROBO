@@ -37,7 +37,7 @@ if __name__ == '__main__':
 	rospy.loginfo('Waiting for clock')
 	rospy.sleep(0.00001)
 
-	covariance_logger = CovarianceLogger(output_filename, topic_name)
+	covariance_logger = CovarianceLogger(topic_name)
 
 	rate = rospy.Rate(rate_num)  # Adjust the rate as necessary
 	try:
