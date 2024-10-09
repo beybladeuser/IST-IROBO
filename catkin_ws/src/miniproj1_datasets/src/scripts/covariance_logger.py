@@ -10,7 +10,7 @@ import sys
 
 class CovarianceLogger:
 	def __init__(self, topic_name = '/frame_path'):
-		self.covariance = None
+		self.covariance = np.array([])
 		subbed = False
 		while not subbed:
 			rospy.loginfo("Waiting for topic")
@@ -23,8 +23,9 @@ class CovarianceLogger:
 		self.covariance = np.array(data.pose.covariance)
 
 	def log(self):
-		if self.covariance != None:
-			rospy.loginfo("Cov: " + str(self.covariance))
+		if len(self.covariance) != 0:
+			str_cov = [str(x) for x in self.covariance]
+			rospy.loginfo("Cov: " + ",".join(str_cov))
 
 if __name__ == '__main__':
 	rospy.init_node('covariance_logger')
