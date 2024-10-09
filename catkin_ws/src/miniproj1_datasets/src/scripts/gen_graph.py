@@ -72,8 +72,8 @@ def parse_log_covariance_line(line_values:np.ndarray, graph_values:list, start_t
 
 	cov_matrix_flat = [float(x) for x in line_values[4:]]
 	cov_matrix = np.array(cov_matrix_flat).reshape((6,6))
-	variance_x = cov_matrix[0, 0]
-	variance_y = cov_matrix[1, 1]
+	variance_x = np.sqrt(cov_matrix[0, 0])
+	variance_y = np.sqrt(cov_matrix[1, 1])
 
 
 	sim_time = float(line_values[2]) - start_time
