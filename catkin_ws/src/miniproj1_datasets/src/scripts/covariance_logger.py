@@ -23,7 +23,8 @@ class CovarianceLogger:
 		self.covariance = np.array(data.pose.covariance)
 
 	def log(self):
-		rospy.loginfo("Cov: " + str(self.covariance))
+		if self.covariance != None:
+			rospy.loginfo("Cov: " + str(self.covariance))
 
 if __name__ == '__main__':
 	rospy.init_node('covariance_logger')
