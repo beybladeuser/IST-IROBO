@@ -3,19 +3,23 @@
 import rospy
 import tf
 from nav_msgs.msg import Odometry
+from geometry_msgs.msg import PoseWithCovarianceStamped
 from rosgraph_msgs.msg import Clock
 import os
 import numpy as np
 import sys
 
 class CovarianceLogger:
-	def __init__(self, topic_name = '/frame_path'):
+	def __init__(self, topic_name = '/odometry/filtered'):
 		self.covariance = np.array([])
 		subbed = False
 		while not subbed:
 			rospy.loginfo("Waiting for topic")
 			try:
-				self.covariance_sub = rospy.Subscriber(topic_name, Odometry, self.pose_callback)
+				if topic_name == "/odometry/filtered":
+					self.covariance_sub = rospy.Subscriber(topic_name, Odometry, self.pose_callback)
+				elif topic_name == "/amcl_pose":
+					self.covariance_sub = rospy.Subscriber(topic_name, PoseWithCovarianceStamped, self.pose_callback)
 				subbed = True
 			except:
 				pass
