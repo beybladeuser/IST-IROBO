@@ -12,6 +12,7 @@ def main():
 	parser.add_argument('-f', '--filename', help='The filename of the log file to make a graph', default='~/.ros/log/latest/error_calc-8-stdout.log')
 	parser.add_argument('-o', '--output', help='The ouput name, ignored if filename is a csv', default='./datasets_error')
 	parser.add_argument('-t', '--title', help='The of title the graph', default='Error for dataset with __placeholder__')
+	parser.add_argument('-y', '--y_label', help='The of label of the y axis', default='Error')
 
 	args = parser.parse_args()
 
@@ -36,7 +37,7 @@ def main():
 	plt.plot(np.array(graph_values["sim_time"]), np.array(graph_values["y"]), marker='')
 	plt.title(args.title)
 	plt.xlabel('Simulation Time')
-	plt.ylabel('Error')
+	plt.ylabel(args.y_label)
 	plt.grid()
 	
 	if "csv" != filename_extension:
