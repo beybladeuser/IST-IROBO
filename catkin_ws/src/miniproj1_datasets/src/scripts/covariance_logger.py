@@ -25,7 +25,7 @@ class CovarianceLogger:
 	def log(self):
 		if len(self.covariance) != 0:
 			str_cov = [str(x) for x in self.covariance]
-			rospy.loginfo("Cov: " + ",".join(str_cov))
+			rospy.loginfo("Cov: " + " ".join(str_cov))
 
 if __name__ == '__main__':
 	rospy.init_node('covariance_logger')
