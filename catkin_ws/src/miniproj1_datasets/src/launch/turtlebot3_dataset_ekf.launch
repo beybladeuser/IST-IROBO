@@ -89,7 +89,6 @@
   
   <node pkg="miniproj1_datasets" type="covariance_logger.py" name="covariance_logger" output="screen">
     <param name="topic_name" value="/odometry/filtered" />
-    <param name="output" value="./miniproj1/error/dataset_covariance_ekf" />
   </node>
 
   <!-- rviz -->
