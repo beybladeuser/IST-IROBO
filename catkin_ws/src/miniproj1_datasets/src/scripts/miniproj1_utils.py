@@ -7,7 +7,7 @@ def split_extension_from_filename(filename:str):
 	filename = ".".join(filename_components[:-1])
 	extension = filename_components[-1]
 	if "/" in extension:
-		filename = ".".join(filename, extension)
+		filename = ".".join((filename, extension))
 		extension = None
 	return filename, extension
 
