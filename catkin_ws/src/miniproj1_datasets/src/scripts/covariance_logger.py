@@ -13,8 +13,14 @@ class CovarianceLogger:
 	def __init__(self, output, topic_name = '/frame_path'):
 		self.output = output
 		self.covariance = pd.DataFrame()
-		self.covariance_sub = rospy.Subscriber(topic_name, Odometry, self.pose_callback)
-
+		subbed = False
+		while not subbed:
+			rospy.loginfo("Waiting for topic")
+			try:
+				self.covariance_sub = rospy.Subscriber(topic_name, Odometry, self.pose_callback)
+				subbed = True
+			except:
+				pass
 	def pose_callback(self, data):
 		self.covariance = pd.concat([self.covariance, pd.DataFrame([data.pose.covariance]).rename_axis("id") ], ignore_index=True)
 
