@@ -33,7 +33,7 @@ def main():
 			print("Unsupported file type")
 
 	print("Creating plot")
-	plt.plot(np.array(graph_values["sim_time"]), np.array(graph_values["error"]), marker='')
+	plt.plot(np.array(graph_values["sim_time"]), np.array(graph_values["y"]), marker='')
 	plt.title(args.title)
 	plt.xlabel('Simulation Time')
 	plt.ylabel('Error')
@@ -57,23 +57,53 @@ def parse_log(file) -> pd.DataFrame:
 	start_time = None
 	for line in file:
 		line = re.sub(TOKEN_TO_RM_REGEX, "", line.strip())
-		line_values = line.split(" ")
-		if "error" != line_values[3].lower():
-			continue
-		
-		if start_time == None:
-			start_time = float(line_values[2])
+		line_values = np.array(line.split(" "))
 
-		sim_time = float(line_values[2]) - start_time
-		error = float(line_values[6])
-
-		temp = {
-			"sim_time": sim_time,
-			"error": error
-		}
-
-		graph_values.append(temp)
+		if "error" == line_values[3].lower():
+			start_time = parse_log_error_line(line_values, graph_values, start_time)
+		elif "cov" == line_values[3].lower():
+			start_time = parse_log_covariance_line(line_values, graph_values, start_time)
 	
 	return pd.DataFrame(graph_values).rename_axis("id")
+
+def parse_log_covariance_line(line_values:np.ndarray, graph_values:list, start_time):
+	if start_time == None:
+		start_time = float(line_values[2])
+
+	cov_matrix_flat = [float(x) for x in line_values[4:]]
+	cov_matrix = np.array(cov_matrix_flat).reshape((6,6))
+	variance_x = cov_matrix[0, 0]
+	variance_y = cov_matrix[1, 1]
+
+
+	sim_time = float(line_values[2]) - start_time
+	cov = (variance_x + variance_y) / 2
+
+	temp = {
+		"sim_time": sim_time,
+		"y": cov
+	}
+	for i in range(len(cov_matrix_flat)):
+		temp[i] = str(cov_matrix_flat[i])
+
+	graph_values.append(temp)
+	return start_time
+
+def parse_log_error_line(line_values:np.ndarray, graph_values:list, start_time):
+	if start_time == None:
+		start_time = float(line_values[2])
+	
+	sim_time = float(line_values[2]) - start_time
+	error = float(line_values[6])
+
+	temp = {
+		"sim_time": sim_time,
+		"y": error
+	}
+
+	graph_values.append(temp)
+
+	return start_time
+
 
 main()
