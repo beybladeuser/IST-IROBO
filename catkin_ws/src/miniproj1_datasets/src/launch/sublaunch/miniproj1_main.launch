@@ -57,7 +57,7 @@
     output="screen"/> -->
     <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_error.launch">
         <arg name="register_error" value="$(arg hasGT)" />
-        <arg name="covariance_topic_name" value="/amcl_pose" />
+        <arg name="covariance_topic_name" value="$(arg covariance_topic_name)" />
     </include>
 
     <!-- rviz -->
