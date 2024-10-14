@@ -1,0 +1,66 @@
+<launch>
+	<!-- Arguments -->
+	<arg name="model" default="waffle_pi" />
+	<arg name="playback" default="true" />
+	<arg name="hasGT" default="true" />
+	<arg name="localize_ekf" default="false" />
+	<arg name="localize_amcl" default="false" />
+	<arg name="covariance_topic_name" default="/amcl_pose" />
+
+
+	<arg name="bag_file" default="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag" />
+	<arg name="map_file" default="$(find turtlebot3_datasets)/data/map.yaml" />
+	<arg name="rviz_config_file"
+		default="$(find miniproj1_datasets)/src/rviz/turtlebot3_visualize_localization_sim.rviz" />
+	<arg name="playback_speed" default="5.0" />
+
+	<!-- Turtlebot3 -->
+	<include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+		<arg name="model" value="$(arg model)" />
+	</include>
+
+	<!-- Map server -->
+	<node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+
+	<!-- TF -->
+	<include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_transforms.launch" />
+
+
+	<!-- ROSBAG -->
+	<include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_play_rosbag.launch">
+		<arg name="playback" value="$(arg playback)" />
+		<arg name="playback_speed" value="$(arg playback_speed)" />
+	</include>
+
+
+	<!-- EKF robot localisation -->
+	<include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_ekf.launch">
+		<arg name="localize" default="$(arg localize_ekf)" />
+	</include>
+
+
+	<!-- AMCL-->
+	<include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_amcl.launch">
+		<arg name="localize" default="$(arg localize_amcl)" />
+	</include>
+
+	<!-- paths -->
+	<include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_draw_path.launch">
+		<arg name="draw_gt" value="$(arg hasGT)" />
+	</include>
+
+
+	<!-- Position error publisher -->
+	<!-- <node pkg="position_error_pub" type="position_error_node.py"
+	name="position_error_publisher"
+	output="screen"/> -->
+	<include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_error.launch">
+		<arg name="register_error" value="$(arg hasGT)" />
+		<arg name="covariance_topic_name" value="/amcl_pose" />
+	</include>
+
+	<!-- rviz -->
+	<node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(arg rviz_config_file)" />
+
+</launch>

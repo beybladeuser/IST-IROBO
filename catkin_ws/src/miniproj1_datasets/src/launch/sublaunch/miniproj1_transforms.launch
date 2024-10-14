@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="tf2_map2odom" required="true"
+		args="0 0 0 0 0 0 map odom" />
+	<node pkg="tf2_ros" type="static_transform_publisher" name="tf2_mocap2odom"
+		args="0.935 1.34 -0.023 0.001 -0.003 0.737 0.676 mocap map" />
+</launch>

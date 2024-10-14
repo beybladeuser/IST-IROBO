@@ -1,0 +1,17 @@
+<launch>
+	<arg name="register_error" default="true" />
+	<arg name="register_covariance" default="true" />
+	<arg name="covariance_topic_name" default="/amcl_pose" />
+
+
+	<group if="$(arg register_error)">
+		<node pkg="miniproj1_datasets" type="calculate_error.py" name="error_calc" output="log" />
+	</group>
+
+	<group if="$(arg register_error)">
+		<node pkg="miniproj1_datasets" type="covariance_logger.py" name="covariance_logger"
+			output="log">
+			<param name="topic_name" value="$(arg covariance_topic_name)" />
+		</node>
+	</group>
+</launch>
