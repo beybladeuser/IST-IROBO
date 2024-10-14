@@ -1,7 +1,7 @@
 <launch>
     <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_main.launch">
         <arg name="playback" value="true" />
-        <arg name="playback_speed" value="5.0" />
+        <arg name="playback_speed" value="15.0" />
         <arg name="hasGT" value="false" />
         <arg name="localize_ekf" value="false" />
         <arg name="localize_amcl" value="true" />
