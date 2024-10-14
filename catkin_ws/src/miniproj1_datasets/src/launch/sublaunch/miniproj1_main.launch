@@ -31,6 +31,7 @@
     <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_play_rosbag.launch">
         <arg name="playback" value="$(arg playback)" />
         <arg name="playback_speed" value="$(arg playback_speed)" />
+        <arg name="bag_file" value="$(arg bag_file)" />
     </include>
 
 
