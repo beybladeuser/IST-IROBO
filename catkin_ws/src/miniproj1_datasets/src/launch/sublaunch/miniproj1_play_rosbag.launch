@@ -1,11 +1,11 @@
 <launch>
-	<arg name="playback" default="true" />
-	<arg name="playback_speed" default="5.0" />
-	<arg name="bag_file" default="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag" />
-	
-	<param name="use_sim_time" value="true" />
-	<group if="$(arg playback)">
-		<node pkg="rosbag" type="play" name="rosbag_player"
-			args="-r $(arg playback_speed) --clock $(arg bag_file)" />
-	</group>
+    <arg name="playback" default="true" />
+    <arg name="playback_speed" default="5.0" />
+    <arg name="bag_file" default="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag" />
+    
+    <param name="use_sim_time" value="true" />
+    <group if="$(arg playback)">
+        <node pkg="rosbag" type="play" name="rosbag_player"
+            args="-r $(arg playback_speed) --clock $(arg bag_file)" />
+    </group>
 </launch>

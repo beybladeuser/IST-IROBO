@@ -1,13 +1,14 @@
 <launch>
-  <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_main.launch">
-		<arg name="playback" value="true" />
-		<arg name="playback_speed" value="5.0" />
-		<arg name="hasGT" value="true" />
-		<arg name="localize_ekf" value="false" />
-		<arg name="localize_amcl" value="false" />
-		<arg name="covariance_topic_name" value="/odometry/filtered" />
-		<arg name="bag_file" value="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag" />
-		<arg name="map_file" value="$(find turtlebot3_datasets)/data/map.yaml" />
-		<arg name="rviz_config_file" value="$(find miniproj1_datasets)/src/rviz/turtlebot3_visualize_localization_sim.rviz" />
-	</include>
+    <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_main.launch">
+        <arg name="playback" value="true" />
+        <arg name="playback_speed" value="5.0" />
+        <arg name="hasGT" value="true" />
+        <arg name="localize_ekf" value="false" />
+        <arg name="localize_amcl" value="false" />
+        <arg name="covariance_topic_name" value="/odometry/filtered" />
+        <arg name="bag_file" value="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag" />
+        <arg name="map_file" value="$(find turtlebot3_datasets)/data/map.yaml" />
+        <arg name="rviz_config_file"
+            value="$(find miniproj1_datasets)/src/rviz/turtlebot3_visualize_localization_sim.rviz" />
+    </include>
 </launch>
