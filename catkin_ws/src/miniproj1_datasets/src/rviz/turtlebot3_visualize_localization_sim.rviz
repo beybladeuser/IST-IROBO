@@ -9,8 +9,6 @@ Panels:
         - /Odometry1/Covariance1
         - /Odometry1/Covariance1/Position1
         - /Odometry1/Covariance1/Orientation1
-        - /Path_gt1
-        - /Path_est1
       Splitter Ratio: 0.5234741568565369
     Tree Height: 359
   - Class: rviz/Selection
