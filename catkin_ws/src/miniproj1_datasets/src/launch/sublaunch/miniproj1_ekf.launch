@@ -4,7 +4,7 @@
     <group if="$(arg localize)">
         <node pkg="robot_localization" type="ekf_localization_node"
             name="robot_localization_ekf_node_odom" clear_params="true">
-            <param name="frequency" value="10." />
+            <param name="frequency" value="1." />
             <param name="sensor_timeout" value="0.2" />
             <param name="two_d_mode" value="true" />
             <param name="publish_tf" value="true" />
@@ -21,7 +21,7 @@
                  ddot_x, ddot_y, ddot_z -->
     
             <rosparam param="odom0_config">
-                [false, false, false,
+                [true, true, false,
                 false, false, false,
                 true, true, false,
                 false, false, true,
@@ -30,10 +30,10 @@
             <param name="imu0" value="imu" />
             <rosparam param="imu0_config">
                 [false, false, false,
-                false, false, true,
+                true, true, true,
                 false, false, false,
                 false, false, false,
-                false, false, false]</rosparam>
+                true, true, false]</rosparam>
             <param name="imu0_relative" value="true" />
         </node>
     </group>
