@@ -5,6 +5,7 @@
     <arg name="hasGT" default="true" />
     <arg name="localize_ekf" default="false" />
     <arg name="localize_amcl" default="false" />
+    <arg name="localize_amcl_default" default="false" />
     <arg name="covariance_topic_name" default="/amcl_pose" />
 
 
@@ -45,6 +46,14 @@
     <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_amcl.launch">
         <arg name="localize" default="$(arg localize_amcl)" />
     </include>
+    <group if="$(arg localize_amcl_default)">
+        <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
+        <arg name="initial_pose_x" default="0.0"/>
+        <arg name="initial_pose_y" default="0.0"/>
+        <arg name="initial_pose_a" default="0.0"/>
+    </include>
+    </group>
+    
 
     <!-- paths -->
     <include file="$(find miniproj1_datasets)/src/launch/sublaunch/miniproj1_draw_path.launch">

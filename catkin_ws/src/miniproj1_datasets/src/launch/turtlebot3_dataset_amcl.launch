@@ -5,6 +5,7 @@
         <arg name="hasGT" value="true" />
         <arg name="localize_ekf" value="false" />
         <arg name="localize_amcl" value="true" />
+        <arg name="localize_amcl_default" value="false" />
         <arg name="covariance_topic_name" value="/amcl_pose" />
         <arg name="bag_file" value="$(find turtlebot3_datasets)/data/fixed_slam_easy.bag" />
         <arg name="map_file" value="$(find turtlebot3_datasets)/data/map.yaml" />
