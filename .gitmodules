@@ -6,4 +6,4 @@
 	url = https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
 [submodule "catkin_ws/src/IST-rrt_planner"]
 	path = catkin_ws/src/IST-rrt_planner
-	url = git@github.com:beybladeuser/IST-rrt_planner.git
+	url = https://github.com/beybladeuser/IST-rrt_planner.git
